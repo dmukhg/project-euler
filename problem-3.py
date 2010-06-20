@@ -1,19 +1,32 @@
-# The sum of the squares of the first ten natural numbers is,
-# 1^(2) + 2^(2) + ... + 10^(2) = 385
+# The prime factors of 13195 are 5, 7, 13 and 29.
+#
+# What is the largest prime factor of the number 600851475143
 
-# The square of the sum of the first ten natural numbers is,
-# (1 + 2 + ... + 10)^(2) = 55^(2) = 3025
+import sys
 
-# Hence the difference between the sum of the squares of the 
-# first ten natural numbers and the square of the sum is 3025
-# - 385 = 2640.
+n = 600851475143 
 
-# Find the difference between the sum of the squares of the 
-# first one hundred natural numbers and the square of the sum.
+def is_prime( num ):
+    for i in range( 2 , num ** 0,5 ):
+        if n % i == 0:
+            return False
 
-# using sum of squares and square of sum of natural nos, 
+    return True
 
-n = 100
-result = ( n*(n+1)/2 )**2 - n*(n+1)*(2*n+1)/6
-print result
+powers = {}
+i = 2
 
+while n != 1 : 
+    if is_prime( i ):
+        if n % i == 0:
+            try:
+                powers[i] += 1
+            except:
+                powers[i] = 1
+            n /= i
+        else:
+            i += 1
+    else:
+        i += 1
+        
+print ( max( powers.keys() ) )
